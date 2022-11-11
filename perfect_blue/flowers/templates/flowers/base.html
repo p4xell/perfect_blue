@@ -12,260 +12,174 @@
     <title>Perfect Flowers</title>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="content">
-            <div class="logo">
-                <div class="_container">
-                    <div class="logo__row">
-                        <div class="logo__body">
-                            <div class="logo__title">
-                                Perfect blue
-                            </div>
-                            <div class="logo__subTitle">
-                                несу тебе букетик через интернетик
-                            </div>
+<div class="wrapper">
+    <div class="content">
+        <div class="logo">
+            <div class="_container">
+                <div class="logo__row">
+                    <div class="logo__body">
+                        <div class="logo__title">
+                            Perfect blue
+                        </div>
+                        <div class="logo__subTitle">
+                            несу тебе букетик через интернетик
                         </div>
                     </div>
-                    <div class="logo__img _imd">
-                        <img src="static/flowers/images/Rectangle 1.png" alt="img">
-                    </div>
+                </div>
+                <div class="logo__img _imd">
+                    <img src="static/flowers/images/Rectangle 1.png" alt="img">
                 </div>
             </div>
-            <header class="header">
-                <div class="head">
-                    <div class="_container">
-                        <ul class="navigation">
-                            <!-- МЕНЮ -->
+        </div>
+        <header class="header">
+            <div class="head">
+                <div class="_container">
+                    <ul class="navigation">
+                        {% for m in menu %}
+                        <li><a href="#">{{ m.title }}</a></li>
+                        {% endfor %}
+                        <input type="text" placeholder="Поиск">
+                    </ul>
+                    <div class="open">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </div>
+                    <div class="close">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </div>
+                    <div class="listWindow">
+                        <div class="search">
+                            <input type="text" placeholder="Поиск">
+                            <a href="#"><img src="img/image 3.png" alt=""></a>
+                        </div>
+                        <ul class="window__list">
                             <li><a href="#">Главная</a></li>
                             <li><a href="#">Хит продаж</a></li>
-                            <input type="text" placeholder="Поиск">
                             <li><a href="#">Корзина</a></li>
                             <li><a href="#">Профиль</a></li>
                         </ul>
-                        <div class="open">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </div>
-                        <div class="close">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </div>
-                        <div class="listWindow">
-                            <div class="search">
-                                <input type="text" placeholder="Поиск">
-                                <a href="#"><img src="img/image 3.png" alt=""></a>
+                        <div class="sort">
+                            <div class="sort__title">
+                                Ассортимент
                             </div>
-                            <ul class="window__list">
-                                <li><a href="#">Главная</a></li>
-                                <li><a href="#">Хит продаж</a></li>
-                                <li><a href="#">Корзина</a></li>
-                                <li><a href="#">Профиль</a></li>
-                            </ul>
-                            <div class="sort">
-                                <div class="sort__title">
-                                    Ассортимент
-                                </div>
-                                <ul class="sort__list">
-                                    <li><a href="#">Розы</a></li>
-                                    <li><a href="#">Тюльпаны</a></li>
-                                    <li><a href="#">Ландыши</a></li>
-                                    <li><a href="#">Ромашки</a></li>
-                                    <li><a href="#">Хризантемы</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sub__head">
-                    <div class="_container">
-                        <div class="subHead__row">
-                            <ul class="range">
-                                <li><a href="#">Все</a></li>
-                                <li><a href="#">Классические</a></li>
-                                <li><a href="#">Авторские</a></li>
-                                <li><a href="#">В коробке</a></li>
-                                <li><a href="#">Съедобные</a></li>
+                            <ul class="sort__list">
+                                <li><a href="#">Розы</a></li>
+                                <li><a href="#">Тюльпаны</a></li>
+                                <li><a href="#">Ландыши</a></li>
+                                <li><a href="#">Ромашки</a></li>
+                                <li><a href="#">Хризантемы</a></li>
                             </ul>
                         </div>
-                    </div>
-                </div>
-            </header>
-            <main class="main">
-                <div class="main__titleBlock">
-                    <div class="_container">
-                        <div class="main__title">
-                            Все товары
-                        </div>
-                    </div>
-                </div>
-                <div class="main__body">
-                    <div class="_container">
-                        <div class="main__row">
-                            <div class="main__page">
-                                <div class="page__body">
-                                    <div class="page__title">
-                                        Алый рассвет
-                                    </div>
-                                    <div class="page__image">
-                                        <img src="img/Rectangle 12.png" alt="">
-                                    </div>
-                                    <div class="page__text">
-                                        25 душистых роз, способных поднять настроение любому человеку.
-                                    </div>
-                                    <div class="page__price">
-                                        499р.
-                                    </div>
-                                    <div class="page__link">
-                                        <a href="#">
-                                            Заказать
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main__page">
-                                <div class="page__body">
-                                    <div class="page__title">
-                                        8 марта
-                                    </div>
-                                    <div class="page__image">
-                                        <img src="img/Rectangle 13.png" alt="">
-                                    </div>
-                                    <div class="page__text">
-                                        Данный букет хорошо пойдет для подростков которые хотят признаться в любви на 8 марта
-                                    </div>
-                                    <div class="page__price">
-                                        499р.
-                                    </div>
-                                    <div class="page__link">
-                                        <a href="#">
-                                            Заказать
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main__page">
-                                <div class="page__body">
-                                    <div class="page__title">
-                                        Розы Blue River
-                                    </div>
-                                    <div class="page__image">
-                                        <img src="img/Rectangle 14.png" alt="">
-                                    </div>
-                                    <div class="page__text">
-                                        Растение славится превосходным ароматом, надолго сохраняющимся даже у высушенного цветка.
-                                    </div>
-                                    <div class="page__price">
-                                        499р.
-                                    </div>
-                                    <div class="page__link">
-                                        <a href="#">
-                                            Заказать
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main__page">
-                                <div class="page__body">
-                                    <div class="page__title">
-                                        Доброе утро
-                                    </div>
-                                    <div class="page__image">
-                                        <img src="img/Rectangle 15.png" alt="">
-                                    </div>
-                                    <div class="page__text">
-                                        Букет состоящий из исключительно красивых тюльпанов
-                                    </div>
-                                    <div class="page__price">
-                                        499р.
-                                    </div>
-                                    <div class="page__link">
-                                        <a href="#">
-                                            Заказать
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main__page">
-                                <div class="page__body">
-                                    <div class="page__title">
-                                        Детство
-                                    </div>
-                                    <div class="page__image">
-                                        <img src="img/Rectangle 16.png" alt="">
-                                    </div>
-                                    <div class="page__text">
-                                        Отличный способ напомнить беззаботные дни детства, объекту внимания
-                                    </div>
-                                    <div class="page__price">
-                                        499р.
-                                    </div>
-                                    <div class="page__link">
-                                        <a href="#">
-                                            Заказать
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main__page">
-                                <div class="page__body">
-                                    <div class="page__title">
-                                        С первого взгляда
-                                    </div>
-                                    <div class="page__image">
-                                        <img src="img/Rectangle 17.png" alt="">
-                                    </div>
-                                    <div class="page__text">
-                                        Нет лучше способа порадовать любимых, чем букет классических ароматных роз
-                                    </div>
-                                    <div class="page__price">
-                                        499р.
-                                    </div>
-                                    <div class="page__link">
-                                        <a href="#">
-                                            Заказать
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="showMore">
-                    <div class="_container">
-                        <div class="showMore__body">
-                            <button class="showMore__button" href="#">Показать ещё</button>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-        <footer class="footer">
-            <div class="_container">
-                <div class="footer__row">
-                    <div class="footer__contacts">
-                        <div class="contacts__title">
-                            Наши контакты:
-                        </div>
-                        <div class="phoneNumbers__row">
-                            <div class="contacts__names">
-                                Тех. поддержка
-                                Служба доставки
-                            </div>
-                            <div class="contacts__list">
-                                +7 (969)-280-7706
-                                +7 (965)-193-3231
-                            </div>
-                        </div>
-                    </div>
-                    <div class="footer__logo">
-                        Лого или название
                     </div>
                 </div>
             </div>
-        </footer>
+
+            <div class="sub__head">
+                <div class="_container">
+                    <div class="subHead__row">
+
+                        <ul class="range">
+                            {% for c in categories %}
+                            <li><a href="#">{{ c }}</a></li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="main__titleBlock">
+                <div class="_container">
+                    <div class="main__title">
+                        Все товары
+                    </div>
+                </div>
+            </div>
+            <div class="main__body">
+
+                <div class="_container">
+
+                    <div class="main__row">
+
+
+                        <div class="main__page">
+                            {% for f in flowers %}
+
+                            <div class="page__body">
+
+                                <div class="page__title">
+                                    {{ f.title }}
+                                </div>
+                                <div class="page__image">
+                                    <img src="{{ f.image.url }}" alt="">
+                                </div>
+                                <div class="page__text">
+                                    {{ f.description }}
+                                </div>
+                                <div class="page__price">
+                                    {{ f.price }}
+                                </div>
+                                <div class="page__link">
+                                    <a href="#">
+                                        Заказать
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="main__page">
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
     </div>
-    <script src="js/script.js"></script>
+    <div class="showMore">
+        <div class="_container">
+            <div class="showMore__body">
+                <button class="showMore__button" href="#">Показать ещё</button>
+            </div>
+        </div>
+    </div>
+    </main>
+</div>
+<footer class="footer">
+    <div class="_container">
+        <div class="footer__row">
+            <div class="footer__contacts">
+                <div class="contacts__title">
+                    Наши контакты:
+                </div>
+                <div class="phoneNumbers__row">
+                    <div class="contacts__names">
+                        Тех. поддержка
+                        Служба доставки
+                    </div>
+                    <div class="contacts__list">
+                        +7 (969)-280-7706
+                        +7 (965)-193-3231
+                    </div>
+                </div>
+            </div>
+            <div class="footer__logo">
+                Лого или название
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+<script src="js/script.js"></script>
 </body>
 </html>
