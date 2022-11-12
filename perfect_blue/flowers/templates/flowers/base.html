@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="logo__img _imd">
-                    <img src="static/flowers/images/Rectangle 1.png" alt="img">
+                    <img src= "{% static 'flowers/images/Rectangle 1.png' %}" alt="img">
                 </div>
             </div>
         </div>
@@ -80,80 +80,11 @@
                     </div>
                 </div>
             </div>
-
-            <div class="sub__head">
-                <div class="_container">
-                    <div class="subHead__row">
-
-                        <ul class="range">
-                            {% for c in categories %}
-                            <li><a href="#">{{ c }}</a></li>
-                            {% endfor %}
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
+            {% block header %}
+            {% endblock %}
         </header>
-        <main class="main">
-            <div class="main__titleBlock">
-                <div class="_container">
-                    <div class="main__title">
-                        Все товары
-                    </div>
-                </div>
-            </div>
-            <div class="main__body">
-
-                <div class="_container">
-
-                    <div class="main__row">
-
-
-                        <div class="main__page">
-                            {% for f in flowers %}
-
-                            <div class="page__body">
-
-                                <div class="page__title">
-                                    {{ f.title }}
-                                </div>
-                                <div class="page__image">
-                                    <img src="{{ f.image.url }}" alt="">
-                                </div>
-                                <div class="page__text">
-                                    {{ f.description }}
-                                </div>
-                                <div class="page__price">
-                                    {{ f.price }}
-                                </div>
-                                <div class="page__link">
-                                    <a href="#">
-                                        Заказать
-                                    </a>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div class="main__page">
-                            {% endfor %}
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-    </div>
-    <div class="showMore">
-        <div class="_container">
-            <div class="showMore__body">
-                <button class="showMore__button" href="#">Показать ещё</button>
-            </div>
-        </div>
-    </div>
-    </main>
+        {% block content %}
+        {% endblock %}
 </div>
 <footer class="footer">
     <div class="_container">

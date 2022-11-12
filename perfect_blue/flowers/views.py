@@ -14,10 +14,25 @@ menu = [
 cats = Categories.objects.all()
 
 
-class AllFlowers(ListView):
+class Main(ListView):
     model = Flowers
-    template_name = 'flowers/base.html'
+    template_name = 'flowers/main.html'
     context_object_name = 'flowers'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu
+        context['categories'] = cats
+        return context
+
+
+class ShowFlowers(ListView):
+    model = Flowers
+    template_name = 'flowers/main.html'
+    context_object_name = 'flowers'
+
+    def get_queryset(self):
+        return Flowers.objects.filter(cat__slug=self.kwargs['flower_slug'])
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
