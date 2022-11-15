@@ -36,7 +36,7 @@
                 <div class="_container">
                     <ul class="navigation">
                         {% for m in menu %}
-                        <li><a href="#">{{ m.title }}</a></li>
+                        <li><a href="{% url m.url %}">{{ m.title }}</a></li>
                         {% endfor %}
                         <input type="text" placeholder="Поиск">
                     </ul>

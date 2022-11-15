@@ -2,12 +2,12 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView
 
-from .models import *
+from .models import Categories, Flowers
 
 menu = [
     {'title': 'Главная', 'url': 'main'},
     {'title': 'Хит продаж', 'url': 'bestseller'},
-    {'title': 'Корзина', 'ulr': 'basket'},
+    {'title': 'Корзина', 'url': 'basket'},
     {'title': 'Профиль', 'url': 'profile'}
 ]
 
@@ -39,3 +39,15 @@ class ShowFlowers(ListView):
         context['menu'] = menu
         context['categories'] = cats
         return context
+
+
+def bestseller(request):
+    return HttpResponse('BestSeller')
+
+
+def basket(request):
+    return HttpResponse('basket')
+
+
+def profile(request):
+    return HttpResponse('profile')
