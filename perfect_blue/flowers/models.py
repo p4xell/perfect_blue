@@ -27,7 +27,7 @@ class Categories(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('flowers', kwargs={'flower_slug': self.slug})
+        return reverse('category', kwargs={'flower_slug': self.slug})
 
     class Meta:
         verbose_name = 'Категория'

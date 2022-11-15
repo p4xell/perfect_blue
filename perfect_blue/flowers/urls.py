@@ -6,6 +6,6 @@ urlpatterns = [
     path('bestseller/', bestseller, name='bestseller'),
     path('basket/', basket, name='basket'),
     path('profile/', profile, name='profile'),
-    path('flowers/<slug:flower_slug>/', ShowFlowers.as_view(), name='flowers'),
+    path('category/<slug:flower_slug>/', ShowFlowers.as_view(), name='category'),
 
 ]
