@@ -4,7 +4,7 @@ from .models import *
 
 
 class FlowersAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'image', 'price']
+    list_display = ['id', 'title', 'price', 'number_of_purchases', 'image']
     list_display_links = ['id', 'title']
     search_fields = ['title', 'description']
 

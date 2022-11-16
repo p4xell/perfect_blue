@@ -6,6 +6,7 @@ class Flowers(models.Model):
     title = models.CharField(max_length=50, verbose_name='Название')
     description = models.TextField(blank=True, verbose_name='Описание')
     price = models.CharField(max_length=10, verbose_name='Цена')
+    number_of_purchases = models.IntegerField(default=0, verbose_name='Количество покупок')
     image = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='Фото')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='URL')
     cat = models.ForeignKey('Categories', on_delete=models.CASCADE)
@@ -19,7 +20,7 @@ class Flowers(models.Model):
     class Meta:
         verbose_name = 'Цветы'
         verbose_name_plural = 'Цветы'
-        ordering = ['title', 'price']
+        ordering = ['title', 'price', 'number_of_purchases']
 
 
 class Categories(models.Model):

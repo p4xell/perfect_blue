@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 
 from .models import Categories, Flowers
@@ -7,7 +7,7 @@ from .models import Categories, Flowers
 menu = [
     {'title': 'Главная', 'url': 'main'},
     {'title': 'Хит продаж', 'url': 'bestseller'},
-    {'title': 'Корзина', 'url': 'basket'},
+    {'title': 'Корзина', 'url': 'cart'},
     {'title': 'Профиль', 'url': 'profile'}
 ]
 
@@ -53,12 +53,12 @@ class PostFlowers(DetailView):
         return context
 
 
+def cart(request):
+    return HttpResponse('cart')
+
+
 def bestseller(request):
     return HttpResponse('BestSeller')
-
-
-def basket(request):
-    return HttpResponse('basket')
 
 
 def profile(request):

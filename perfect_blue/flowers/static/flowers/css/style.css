@@ -526,4 +526,13 @@ body{
     display: none;
   }
 }
+
+h1.post-title{
+    font-size: 30px;
+    padding: 40px;
+}
+
+img.post-image{
+    padding: 30px;
+}
 /*  */
