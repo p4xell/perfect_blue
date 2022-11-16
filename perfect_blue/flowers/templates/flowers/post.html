@@ -1,0 +1,10 @@
+{% extends 'flowers/base.html' %}
+{% block content %}
+<div>
+    <h1>{{ post }}</h1>
+    <img src="{{ post.image.url }}" alt="image">
+    <div>
+        {{ post.description }}
+    </div>
+</div>
+{% endblock %}

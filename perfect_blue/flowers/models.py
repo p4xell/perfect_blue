@@ -13,6 +13,9 @@ class Flowers(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('post', kwargs={'post_slug': self.slug})
+
     class Meta:
         verbose_name = 'Цветы'
         verbose_name_plural = 'Цветы'
@@ -27,7 +30,7 @@ class Categories(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('category', kwargs={'flower_slug': self.slug})
+        return reverse('category', kwargs={'category_slug': self.slug})
 
     class Meta:
         verbose_name = 'Категория'
