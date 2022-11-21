@@ -1,1 +1,6 @@
 {% extends 'flowers/base.html' %}
+{% block content %}
+{% for f in flowers %}
+    <p> {{ f }} --- {{ f.number_of_purchases }}</p>
+{% endfor %}
+{% endblock %}

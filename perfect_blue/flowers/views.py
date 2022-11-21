@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import View, ListView, DetailView
 
 from .models import Categories, Flowers
 
@@ -41,24 +41,55 @@ class CategoriesFlowers(ListView):
         return context
 
 
-class PostFlowers(DetailView):
-    model = Flowers
-    template_name = 'flowers/post.html'
-    context_object_name = 'post'
-    slug_url_kwarg = 'post_slug'
+class PostFlowers(View):
+    def get(self, request, post_slug):
+        post = Flowers.objects.get(slug=post_slug)
+        context = {
+            'menu': menu,
+            'categories': cats,
+            'post': post
+        }
+        return render(request, 'flowers/post.html', context)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['menu'] = menu
-        return context
+    def post(self, request, post_slug):
+        post = Flowers.objects.get(slug=post_slug)
+        post.number_of_purchases += 1
+        post.save()
+        context = {
+            'menu': menu,
+            'categories': cats,
+            'post': post
+        }
+        return render(request, 'flowers/post.html', context)
+
+
+class BestSeller(View):
+    def get(self, request):
+        flowers = []
+        for item in Flowers.objects.all():
+            flowers.append(item)
+        number_of_purchases_lst = []
+        for i in range(3):
+            index = 0
+            max_value = 0
+            for f in range(len(flowers)):
+                if flowers[f].number_of_purchases > max_value:
+                    max_value = flowers[f].number_of_purchases
+                    index = f
+
+            number_of_purchases_lst.append(flowers[index])
+            del flowers[index]
+
+        context = {
+            'menu': menu,
+            'categories': cats,
+            'flowers': number_of_purchases_lst,
+        }
+        return render(request, 'flowers/bestseller.html', context)
 
 
 def cart(request):
     return HttpResponse('cart')
-
-
-def bestseller(request):
-    return HttpResponse('BestSeller')
 
 
 def profile(request):

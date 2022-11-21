@@ -8,7 +8,10 @@
             {{ post.description }}
         </div>
         <div>
-
+            <form method="post", action="">
+                {% csrf_token %}
+                <button class="buy" type="submit" name="add_to_cart">Купить</button>
+            </form>
         </div>
     </div>
 </div>
