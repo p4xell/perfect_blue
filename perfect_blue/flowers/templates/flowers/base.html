@@ -36,9 +36,14 @@
                 <div class="_container">
                     <ul class="navigation">
                         {% for m in menu %}
-                        <li><a href="{% url m.url %}">{{ m.title }}</a></li>
+                            <li><a href="{% url m.url %}">{{ m.title }}</a></li>
                         {% endfor %}
                         <input type="text" placeholder="Поиск">
+                        {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'profile' %}">Профиль</a></li>
+                        {% else %}
+                            <li><a href="{% url 'login' %}">Войти</a></li>
+                        {% endif %}
                     </ul>
                     <div class="open">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"

@@ -1,14 +1,18 @@
+from django.contrib.auth import login, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import View, ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import View, ListView, DetailView, CreateView
 
+from .forms import RegisterUserForm
 from .models import Categories, Flowers
 
 menu = [
     {'title': 'Главная', 'url': 'main'},
     {'title': 'Хит продаж', 'url': 'bestseller'},
     {'title': 'Корзина', 'url': 'cart'},
-    {'title': 'Профиль', 'url': 'profile'}
 ]
 
 cats = Categories.objects.all()
@@ -92,5 +96,39 @@ def cart(request):
     return HttpResponse('cart')
 
 
-def profile(request):
-    return HttpResponse('profile')
+class Profile(View):
+    def get(self, request):
+        return render(request, 'flowers/profile.html', {'menu': menu})
+
+    def post(self, request):
+        logout(request)
+        return redirect('main')
+
+
+class RegisterUser(CreateView):
+    form_class = RegisterUserForm
+    template_name = 'flowers/registration.html'
+    success_url = reverse_lazy('main')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu
+        return context
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        redirect('main')
+
+
+class LoginUser(LoginView):
+    form_class = AuthenticationForm
+    template_name = 'flowers/login.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu
+        return context
+
+
+
