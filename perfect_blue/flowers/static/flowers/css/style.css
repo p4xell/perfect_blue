@@ -537,6 +537,7 @@ img.post-image{
 }
 
 .buy {
+    margin: 20px;
     color: #232323;
     background: transparent;
     border: 1px solid #232323;

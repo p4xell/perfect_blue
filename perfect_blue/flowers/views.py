@@ -8,11 +8,12 @@ from django.views.generic import View, ListView, DetailView, CreateView
 
 from .forms import RegisterUserForm
 from .models import Categories, Flowers
+from cart.forms import CartAddProductForm
+
 
 menu = [
     {'title': 'Главная', 'url': 'main'},
     {'title': 'Хит продаж', 'url': 'bestseller'},
-    {'title': 'Корзина', 'url': 'cart'},
 ]
 
 cats = Categories.objects.all()
@@ -48,10 +49,12 @@ class CategoriesFlowers(ListView):
 class PostFlowers(View):
     def get(self, request, post_slug):
         post = Flowers.objects.get(slug=post_slug)
+        cart_product_form = CartAddProductForm()
         context = {
             'menu': menu,
             'categories': cats,
-            'post': post
+            'post': post,
+            'cart_product_form': cart_product_form,
         }
         return render(request, 'flowers/post.html', context)
 

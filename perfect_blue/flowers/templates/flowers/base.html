@@ -3,8 +3,6 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'flowers/css/style.css' %}?version={% now 'U' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +25,7 @@
                     </div>
                 </div>
                 <div class="logo__img _imd">
-                    <img src= "{% static 'flowers/images/Rectangle 1.png' %}" alt="img">
+                    <img src="{% static 'flowers/images/Rectangle 1.png' %}" alt="img">
                 </div>
             </div>
         </div>
@@ -36,29 +34,30 @@
                 <div class="_container">
                     <ul class="navigation">
                         {% for m in menu %}
-                            <li><a href="{% url m.url %}">{{ m.title }}</a></li>
+                        <li><a href="{% url m.url %}">{{ m.title }}</a></li>
                         {% endfor %}
                         <input type="text" placeholder="Поиск">
+                        <li>
+                            <div>
+                                {% with total_items=cart|length %}
+                                {% if cart|length > 0 %}
+
+                                <a href="{% url 'cart:cart_detail' %}">
+                                    Ваша корзина:
+                                    {{ total_items }} товар, {{ cart.get_total_price }} руб.
+                                </a>
+                                {% else %}
+                                Your cart is empty.
+                                {% endif %}
+                                {% endwith %}
+                            </div>
+                        </li>
                         {% if request.user.is_authenticated %}
-                            <li><a href="{% url 'profile' %}">Профиль</a></li>
+                        <li><a href="{% url 'profile' %}">Профиль</a></li>
                         {% else %}
-                            <li><a href="{% url 'login' %}">Войти</a></li>
+                        <li><a href="{% url 'login' %}">Войти</a></li>
                         {% endif %}
                     </ul>
-                    <div class="open">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </div>
-                    <div class="close">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </div>
                     <div class="listWindow">
                         <div class="search">
                             <input type="text" placeholder="Поиск">
@@ -90,31 +89,31 @@
         </header>
         {% block content %}
         {% endblock %}
-</div>
-<footer class="footer">
-    <div class="_container">
-        <div class="footer__row">
-            <div class="footer__contacts">
-                <div class="contacts__title">
-                    Наши контакты:
-                </div>
-                <div class="phoneNumbers__row">
-                    <div class="contacts__names">
-                        Тех. поддержка
-                        Служба доставки
+    </div>
+    <footer class="footer">
+        <div class="_container">
+            <div class="footer__row">
+                <div class="footer__contacts">
+                    <div class="contacts__title">
+                        Наши контакты:
                     </div>
-                    <div class="contacts__list">
-                        +7 (969)-280-7706
-                        +7 (965)-193-3231
+                    <div class="phoneNumbers__row">
+                        <div class="contacts__names">
+                            Тех. поддержка
+                            Служба доставки
+                        </div>
+                        <div class="contacts__list">
+                            +7 (969)-280-7706
+                            +7 (965)-193-3231
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="footer__logo">
-                Лого или название
+                <div class="footer__logo">
+                    Лого или название
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 </div>
 <script src="js/script.js"></script>
 </body>
