@@ -8,14 +8,10 @@
             {{ post.description }}
         </div>
         <div>
-            <form method="post" , action="">
-                {% csrf_token %}
-                <button class="buy" type="submit" name="add_to_cart">Купить</button>
-            </form>
             <form action="{% url 'cart:cart_add' post.id %}" method="post">
-            {{ cart_product_form }}
-            {% csrf_token %}
-            <input type="submit" value="Add to cart">
+                {{ cart_product_form }}
+                {% csrf_token %}
+                <button class="buy" type="submit" value="Add to cart">Добавить в корзину</button>
             </form>
         </div>
     </div>

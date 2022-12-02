@@ -6,8 +6,7 @@ from .forms import CartAddProductForm
 
 menu = [
     {'title': 'Главная', 'url': 'main'},
-    {'title': 'Хит продаж', 'url': 'bestseller'},
-    {'title': 'Корзина', 'url': 'cart'}, ]
+    {'title': 'Хит продаж', 'url': 'bestseller'}, ]
 
 
 @require_POST
@@ -20,8 +19,9 @@ def cart_add(request, product_id):
         cart.add(product=product,
                  quantity=cd['quantity'],
                  update_quantity=cd['update'])
+        product.number_of_purchases += form.cleaned_data['quantity']
+        product.save()
     return redirect('cart:cart_detail')
-
 
 
 def cart_remove(request, product_id):

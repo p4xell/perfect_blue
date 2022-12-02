@@ -236,7 +236,7 @@ body{
     justify-content: center;
   }
 }
-.navigation a{
+.navigation li, .navigation a{
     font-size: 18px;
     line-height: 21px;
     color: #FFFFFF;
@@ -538,7 +538,7 @@ img.post-image{
 
 .buy {
     margin: 20px;
-    color: #232323;
+    color: #FFFFFF;
     background: transparent;
     border: 1px solid #232323;
     position: relative;

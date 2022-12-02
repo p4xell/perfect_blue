@@ -1,6 +1,9 @@
 {% extends 'flowers/base.html' %}
 {% block content %}
 {% for f in flowers %}
+    {% if f.image %}
+        <img class="post-image" src="{{ f.image.url }}" alt="image">
+    {% endif %}
     <p> {{ f }} --- {{ f.number_of_purchases }}</p>
 {% endfor %}
 {% endblock %}
