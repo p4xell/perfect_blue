@@ -10,28 +10,21 @@ from .forms import RegisterUserForm
 from .models import Categories, Flowers
 from cart.forms import CartAddProductForm
 
-
-menu = [
-    {'title': 'Главная', 'url': 'main'},
-    {'title': 'Хит продаж', 'url': 'bestseller'},
-]
-
-cats = Categories.objects.all()
+from .utils import DataMixin, menu, cats
 
 
-class Main(ListView):
+class Main(DataMixin, ListView):
     model = Flowers
     template_name = 'flowers/main.html'
     context_object_name = 'flowers'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = menu
-        context['categories'] = cats
-        return context
+        user_context = self.get_user_context()
+        return dict(list(context.items()) + list(user_context.items()))
 
 
-class CategoriesFlowers(ListView):
+class CategoriesFlowers(DataMixin, ListView):
     model = Flowers
     template_name = 'flowers/main.html'
     context_object_name = 'flowers'
@@ -41,12 +34,11 @@ class CategoriesFlowers(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = menu
-        context['categories'] = cats
-        return context
+        user_context = self.get_user_context()
+        return dict(list(context.items()) + list(user_context.items()))
 
 
-class PostFlowers(View):
+class PostFlowers(DataMixin, View):
     def get(self, request, post_slug):
         post = Flowers.objects.get(slug=post_slug)
         cart_product_form = CartAddProductForm()
@@ -56,6 +48,7 @@ class PostFlowers(View):
             'post': post,
             'cart_product_form': cart_product_form,
         }
+
         return render(request, 'flowers/post.html', context)
 
     def post(self, request, post_slug):
@@ -115,8 +108,8 @@ class RegisterUser(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = menu
-        return context
+        user_context = self.get_user_context(menu=menu)
+        return dict(list(context.items()) + list(user_context.items()))
 
     def form_valid(self, form):
         user = form.save()
@@ -130,8 +123,5 @@ class LoginUser(LoginView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = menu
-        return context
-
-
-
+        user_context = self.get_user_context(menu=menu)
+        return dict(list(context.items()) + list(user_context.items()))
